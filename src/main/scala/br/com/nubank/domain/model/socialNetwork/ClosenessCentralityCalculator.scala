@@ -12,6 +12,6 @@ class ClosenessCentralityCalculator {
   def calculateFarness(distanceMatrix: Array[Array[Int]], vertexesSize: Int, vertex: Vertex): Int = {
     val allDistances = for (i <- 0 until vertexesSize)
       yield distanceMatrix(vertex.id)(i)
-    allDistances.sum / 1
+    allDistances.sum
   }
 }
