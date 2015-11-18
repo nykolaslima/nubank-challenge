@@ -9,7 +9,7 @@ class ClosenessCentralityCalculator {
     })
   }
 
-  def calculateFarness(distanceMatrix: Array[Array[Int]], vertexesSize: Int, vertex: Vertex): Int = {
+  private def calculateFarness(distanceMatrix: Array[Array[Int]], vertexesSize: Int, vertex: Vertex): Int = {
     (for (i <- 0 until vertexesSize)
       yield distanceMatrix(vertex.id)(i)).sum
   }
