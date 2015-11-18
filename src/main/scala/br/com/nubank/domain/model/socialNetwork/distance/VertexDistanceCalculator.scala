@@ -1,4 +1,6 @@
-package br.com.nubank.domain.model.socialNetwork
+package br.com.nubank.domain.model.socialNetwork.distance
+
+import br.com.nubank.domain.model.socialNetwork.Vertex
 
 class VertexDistanceCalculator {
 

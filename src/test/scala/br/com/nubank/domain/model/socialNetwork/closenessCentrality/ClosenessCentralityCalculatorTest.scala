@@ -1,5 +1,6 @@
-package br.com.nubank.domain.model.socialNetwork
+package br.com.nubank.domain.model.socialNetwork.closenessCentrality
 
+import br.com.nubank.domain.model.socialNetwork.Vertex
 import br.com.nubank.infrastructure.UnitSpec
 
 class ClosenessCentralityCalculatorTest extends UnitSpec {
