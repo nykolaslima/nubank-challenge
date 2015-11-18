@@ -1,10 +1,10 @@
 package br.com.nubank.domain.model.socialNetwork
 
-class SocialNetworkCalculator {
+class VertexDistanceCalculator {
 
   val Inf = 999
 
-  def calculate(vertexQuantity: Int, graph: Map[Vertex, List[Vertex]]): SocialNetwork = {
+  def calculate(vertexQuantity: Int, graph: Map[Vertex, List[Vertex]]): Array[Array[Int]] = {
     val distanceMatrix = initDistanceMatrix(vertexQuantity, graph)
 
     for {
@@ -17,7 +17,7 @@ class SocialNetworkCalculator {
       }
     }
 
-    SocialNetwork(distanceMatrix, graph, vertexQuantity)
+    distanceMatrix
   }
 
   private def initDistanceMatrix(vertexQuantity: Int, graph: Map[Vertex, List[Vertex]]): Array[Array[Int]] = {
