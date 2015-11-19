@@ -1,7 +1,8 @@
-package br.com.nubank.domain.model.socialNetwork
+package br.com.nubank.domain.service.socialNetwork
 
-import br.com.nubank.domain.model.socialNetwork.closenessCentrality.ClosenessCentralityCalculator
-import br.com.nubank.domain.model.socialNetwork.distance.VertexDistanceCalculator
+import br.com.nubank.domain.model.socialNetwork.{SocialNetwork, Vertex}
+import br.com.nubank.domain.service.socialNetwork.closenessCentrality.ClosenessCentralityCalculator
+import br.com.nubank.domain.service.socialNetwork.distance.VertexDistanceCalculator
 
 class SocialNetworkCalculator ()(vertexDistanceCalculator: VertexDistanceCalculator, closenessCentralityCalculator: ClosenessCentralityCalculator) {
 

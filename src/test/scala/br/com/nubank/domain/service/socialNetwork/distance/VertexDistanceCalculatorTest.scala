@@ -1,4 +1,4 @@
-package br.com.nubank.domain.model.socialNetwork.distance
+package br.com.nubank.domain.service.socialNetwork.distance
 
 import br.com.nubank.domain.model.socialNetwork.Vertex
 import br.com.nubank.infrastructure.UnitSpec

@@ -1,4 +1,4 @@
-package br.com.nubank.domain.model.socialNetwork.closenessCentrality
+package br.com.nubank.domain.service.socialNetwork.closenessCentrality
 
 import br.com.nubank.domain.model.socialNetwork.Vertex
 import br.com.nubank.infrastructure.UnitSpec
