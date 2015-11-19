@@ -1,7 +1,10 @@
 package br.com.nubank.domain.service.socialNetwork.distance
 
+import javax.inject.Singleton
+
 import br.com.nubank.domain.model.socialNetwork.Vertex
 
+@Singleton
 class VertexDistanceCalculator {
 
   val Inf = 999

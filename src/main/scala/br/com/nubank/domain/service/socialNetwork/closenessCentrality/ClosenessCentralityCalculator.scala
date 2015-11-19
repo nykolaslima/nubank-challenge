@@ -1,7 +1,10 @@
 package br.com.nubank.domain.service.socialNetwork.closenessCentrality
 
+import javax.inject.Singleton
+
 import br.com.nubank.domain.model.socialNetwork.Vertex
 
+@Singleton
 class ClosenessCentralityCalculator {
 
   def calculate(distanceMatrix: Array[Array[Int]], vertexes: List[Vertex]): List[Vertex] = {
