@@ -14,7 +14,7 @@ class SocialNetworkCalculatorTest extends UnitSpec {
   before {
     vertexDistanceCalculator = mock[VertexDistanceCalculator]
     closenessCentralityCalculator = mock[ClosenessCentralityCalculator]
-    socialNetworkCalculator = new SocialNetworkCalculator()()()(vertexDistanceCalculator, closenessCentralityCalculator)
+    socialNetworkCalculator = new SocialNetworkCalculator()(vertexDistanceCalculator, closenessCentralityCalculator)
   }
 
   it should "calculate social network for a graph" in {
