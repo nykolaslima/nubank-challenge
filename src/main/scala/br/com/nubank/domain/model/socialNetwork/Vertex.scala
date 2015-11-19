@@ -1,3 +1,3 @@
 package br.com.nubank.domain.model.socialNetwork
 
-case class Vertex(id: Int, score: Double = 0)
+case class Vertex(id: Int, closenessCentrality: Double = 0)

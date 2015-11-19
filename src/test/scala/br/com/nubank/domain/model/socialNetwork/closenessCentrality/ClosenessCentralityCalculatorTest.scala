@@ -13,11 +13,11 @@ class ClosenessCentralityCalculatorTest extends UnitSpec {
 
     val calculatedVertexes: List[Vertex] = closenessCentralityCalculator.calculate(distanceMatrix, vertexes)
 
-    calculatedVertexes.find(v => v.id == 0).get.score.shouldEqual(0.125)
-    calculatedVertexes.find(v => v.id == 1).get.score.shouldEqual(0.2)
-    calculatedVertexes.find(v => v.id == 2).get.score.shouldEqual(0.166)
-    calculatedVertexes.find(v => v.id == 3).get.score.shouldEqual(0.111)
-    calculatedVertexes.find(v => v.id == 4).get.score.shouldEqual(0.125)
+    calculatedVertexes.find(v => v.id == 0).get.closenessCentrality.shouldEqual(0.125)
+    calculatedVertexes.find(v => v.id == 1).get.closenessCentrality.shouldEqual(0.2)
+    calculatedVertexes.find(v => v.id == 2).get.closenessCentrality.shouldEqual(0.166)
+    calculatedVertexes.find(v => v.id == 3).get.closenessCentrality.shouldEqual(0.111)
+    calculatedVertexes.find(v => v.id == 4).get.closenessCentrality.shouldEqual(0.125)
   }
 
   /*
