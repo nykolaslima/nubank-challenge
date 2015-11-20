@@ -15,8 +15,8 @@ class ClosenessCentralityCalculatorTest extends UnitSpec {
 
     calculatedVertexes.find(v => v.id == 0).get.closenessCentrality.shouldEqual(0.125)
     calculatedVertexes.find(v => v.id == 1).get.closenessCentrality.shouldEqual(0.2)
-    calculatedVertexes.find(v => v.id == 2).get.closenessCentrality.shouldEqual(0.166)
-    calculatedVertexes.find(v => v.id == 3).get.closenessCentrality.shouldEqual(0.111)
+    calculatedVertexes.find(v => v.id == 2).get.closenessCentrality.shouldEqual(0.166666666666666)
+    calculatedVertexes.find(v => v.id == 3).get.closenessCentrality.shouldEqual(0.111111111111111)
     calculatedVertexes.find(v => v.id == 4).get.closenessCentrality.shouldEqual(0.125)
   }
 

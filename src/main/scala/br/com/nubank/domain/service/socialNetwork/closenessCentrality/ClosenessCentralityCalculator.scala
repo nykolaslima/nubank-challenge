@@ -10,7 +10,7 @@ class ClosenessCentralityCalculator {
   def calculate(distanceMatrix: Array[Array[Int]], vertexes: List[Vertex]): List[Vertex] = {
     vertexes.map(vertex => {
       val closeness = BigDecimal(1.0) / calculateFarness(distanceMatrix, vertexes.size, vertex)
-      Vertex(vertex.id, closeness.setScale(3, BigDecimal.RoundingMode.DOWN).toDouble)
+      Vertex(vertex.id, closeness.setScale(15, BigDecimal.RoundingMode.DOWN).toDouble)
     })
   }
 
