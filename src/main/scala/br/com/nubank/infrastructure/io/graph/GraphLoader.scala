@@ -23,12 +23,12 @@ class GraphLoader {
     (graph, vertexes)
   }
 
-  def toGraph(graph: Map[Vertex, List[Vertex]], entry: (Vertex, Vertex)): Map[Vertex, List[Vertex]] = {
+  private def toGraph(graph: Map[Vertex, List[Vertex]], entry: (Vertex, Vertex)): Map[Vertex, List[Vertex]] = {
     val (v1, v2) = entry
     graph + (v1 -> (graph.getOrElse(v1, List()) :+ v2))
   }
 
-  def toVertexes(vertexes: Set[Vertex], entry: (Vertex, Vertex)): Set[Vertex] = {
+  private def toVertexes(vertexes: Set[Vertex], entry: (Vertex, Vertex)): Set[Vertex] = {
     val (v1, v2) = entry
     vertexes ++ Set(v1, v2)
   }

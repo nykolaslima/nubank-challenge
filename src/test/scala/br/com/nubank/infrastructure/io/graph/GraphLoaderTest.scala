@@ -2,7 +2,6 @@ package br.com.nubank.infrastructure.io.graph
 
 import br.com.nubank.domain.model.socialNetwork.Vertex
 import br.com.nubank.infrastructure.UnitSpec
-import br.com.nubank.infrastructure.io.graph.GraphLoader
 
 class GraphLoaderTest extends UnitSpec {
 
