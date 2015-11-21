@@ -7,15 +7,15 @@ The shortest path algorithm used was [Floyd–Warshall](https://en.wikipedia.org
 
 ### Running the project
 
-Simple run `sbt run` and `br.com.nubank.infrastructure.server.TwitterServerMain` will be called and server will start in port `8888`
+`sbt run` and server will start in port `8888`
 
 ### REST endpoints
 
-There are 3 defined endpoints:
- `GET     /social-network/rank` - list the social network rank based on closeness centrality
- `POST    /social-network/edges` - add a new edge into social network
+There are 3 defined endpoints:  
+ `GET     /social-network/rank` - list the social network rank based on closeness centrality  
+ `POST    /social-network/edges` - add a new edge into social network  
  `POST    /social-network/vertexes/:id/actions/fraudulent` - mark a vertex as fraudulent
 
-### Tests
+### Running tests
 
-To run the tests simple call `sbt test` from terminal
+`sbt test`
