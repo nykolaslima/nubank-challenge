@@ -8,16 +8,26 @@ class ClosenessCentralityCalculatorTest extends UnitSpec {
   val closenessCentralityCalculator = new ClosenessCentralityCalculator()
 
   it should "calculate closeness centrality" in {
-    val distanceMatrix = buildDistanceMatrix
-    val vertexes = Set(Vertex(0), Vertex(1), Vertex(2), Vertex(3), Vertex(4))
-
-    val calculatedVertexes: Set[Vertex] = closenessCentralityCalculator.calculate(distanceMatrix, vertexes)
+    val calculatedVertexes: Set[Vertex] = closenessCentralityCalculator.calculate(buildDistanceMatrix, buildVertexes)
 
     calculatedVertexes.find(v => v.id == 0).get.closenessCentrality.shouldEqual(0.125)
     calculatedVertexes.find(v => v.id == 1).get.closenessCentrality.shouldEqual(0.2)
     calculatedVertexes.find(v => v.id == 2).get.closenessCentrality.shouldEqual(0.166666666666666)
     calculatedVertexes.find(v => v.id == 3).get.closenessCentrality.shouldEqual(0.111111111111111)
     calculatedVertexes.find(v => v.id == 4).get.closenessCentrality.shouldEqual(0.125)
+  }
+
+  it should "calculate closeness centrality with fraudulent vertex" in {
+    val distanceMatrix = buildDistanceMatrix
+    val vertexes: Set[Vertex] = buildVertexes - Vertex(3) + Vertex(id = 3, fraudulent = true)
+
+    val calculatedVertexes: Set[Vertex] = closenessCentralityCalculator.calculate(distanceMatrix, vertexes)
+
+    calculatedVertexes.find(v => v.id == 0).get.closenessCentrality.shouldEqual(0.109375)
+    calculatedVertexes.find(v => v.id == 1).get.closenessCentrality.shouldEqual(0.15)
+    calculatedVertexes.find(v => v.id == 2).get.closenessCentrality.shouldEqual(0.083333333333333)
+    calculatedVertexes.find(v => v.id == 3).get.closenessCentrality.shouldEqual(0)
+    calculatedVertexes.find(v => v.id == 4).get.closenessCentrality.shouldEqual(0.109375)
   }
 
   /*
@@ -59,4 +69,10 @@ class ClosenessCentralityCalculatorTest extends UnitSpec {
 
     distanceMatrix
   }
+
+  def buildVertexes: Set[Vertex] = {
+    val vertexes = Set(Vertex(0), Vertex(1), Vertex(2), Vertex(3), Vertex(4))
+    vertexes
+  }
+
 }

@@ -28,4 +28,18 @@ class SocialNetworkService @Inject()(vertexDistanceCalculator: VertexDistanceCal
     socialNetworkDao.save(calculate(newVertexes, newGraph))
   }
 
+  def markFraudulent(vertex: Vertex) = {
+    val socialNetwork = socialNetworkDao.get
+    socialNetwork.vertexes
+      .find(_ == vertex)
+      .map(_.copy(fraudulent = true))
+      .map(fraudulentVertex =>
+        socialNetwork.vertexes - fraudulentVertex + fraudulentVertex
+      )
+      .map(vertexesWithFraudulent => {
+        val vertexesRecalculated = closenessCentralityCalculator.calculate(socialNetwork.distanceMatrix, vertexesWithFraudulent)
+        socialNetworkDao.save(socialNetwork.copy(vertexes = vertexesRecalculated))
+      })
+  }
+
 }

@@ -11,7 +11,7 @@ import com.twitter.finagle.http.Request
 import com.twitter.finatra.http.Controller
 
 @Singleton
-class SocialNetworkController @Inject()(socialNetworkDao: SocialNetworkDao, socialNetworkCalculator: SocialNetworkService)
+class SocialNetworkController @Inject()(socialNetworkDao: SocialNetworkDao, socialNetworkService: SocialNetworkService)
   extends Controller with VertexResourceMapping {
 
   get("/social-network/rank") { request: Request =>
@@ -19,8 +19,13 @@ class SocialNetworkController @Inject()(socialNetworkDao: SocialNetworkDao, soci
   }
 
   post("/social-network/edges") { edgeResource: EdgeResource =>
-    socialNetworkCalculator.addEdge(Vertex(edgeResource.v1), Vertex(edgeResource.v2))
+    socialNetworkService.addEdge(Vertex(edgeResource.v1), Vertex(edgeResource.v2))
     response.created
+  }
+
+  post("/social-network/vertexes/:id/actions/fraudulent") { request: Request =>
+    socialNetworkService.markFraudulent(Vertex(request.params("id").toInt))
+    response.ok
   }
 
 }

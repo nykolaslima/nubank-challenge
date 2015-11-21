@@ -10,7 +10,7 @@ import org.mockito.Mockito._
 
 class SocialNetworkServiceTest extends UnitSpec {
 
-  var socialNetworkCalculator: SocialNetworkService = null
+  var socialNetworkService: SocialNetworkService = null
   var vertexDistanceCalculator: VertexDistanceCalculator = null
   var closenessCentralityCalculator: ClosenessCentralityCalculator = null
   var socialNetworkDao: SocialNetworkDao = null
@@ -19,7 +19,7 @@ class SocialNetworkServiceTest extends UnitSpec {
     vertexDistanceCalculator = mock[VertexDistanceCalculator]
     closenessCentralityCalculator = mock[ClosenessCentralityCalculator]
     socialNetworkDao = mock[SocialNetworkDao]
-    socialNetworkCalculator = new SocialNetworkService(vertexDistanceCalculator, closenessCentralityCalculator, socialNetworkDao)
+    socialNetworkService = new SocialNetworkService(vertexDistanceCalculator, closenessCentralityCalculator, socialNetworkDao)
   }
 
   it should "calculate social network for a graph" in {
@@ -30,7 +30,7 @@ class SocialNetworkServiceTest extends UnitSpec {
     when(vertexDistanceCalculator.calculate(vertexes.size, graph)).thenReturn(distanceMatrix)
     when(closenessCentralityCalculator.calculate(distanceMatrix, vertexes)).thenReturn(vertexesWithCloseness)
 
-    val socialNetwork = socialNetworkCalculator.calculate(vertexes, graph)
+    val socialNetwork = socialNetworkService.calculate(vertexes, graph)
 
     socialNetwork.distanceMatrix.shouldEqual(distanceMatrix)
     socialNetwork.vertexes.shouldEqual(vertexesWithCloseness)
@@ -44,7 +44,7 @@ class SocialNetworkServiceTest extends UnitSpec {
     val expectedVertexes = Set(Vertex(0), Vertex(1), Vertex(2), Vertex(3))
     when(closenessCentralityCalculator.calculate(distanceMatrix, expectedVertexes)).thenReturn(expectedVertexes)
 
-    socialNetworkCalculator.addEdge(Vertex(2), Vertex(3))
+    socialNetworkService.addEdge(Vertex(2), Vertex(3))
 
     val captor = ArgumentCaptor.forClass(classOf[SocialNetwork])
     verify(socialNetworkDao).save(captor.capture())
@@ -54,6 +54,17 @@ class SocialNetworkServiceTest extends UnitSpec {
     val newSocialNetwork = captor.getValue
     newSocialNetwork.graph.shouldEqual(buildExpectedGraph)
     newSocialNetwork.vertexes.shouldEqual(expectedVertexes)
+  }
+
+  it should "mark vertex as fraudulent" in {
+    val socialNetwork = buildSocialNetwork
+    when(socialNetworkDao.get).thenReturn(socialNetwork)
+
+    socialNetworkService.markFraudulent(Vertex(2))
+
+    val captor = ArgumentCaptor.forClass(classOf[Set[Vertex]])
+    verify(closenessCentralityCalculator).calculate(org.mockito.Matchers.eq(socialNetwork.distanceMatrix), captor.capture())
+    captor.getValue.find(_.id == 2).get.fraudulent shouldEqual true
   }
 
   def buildExpectedGraph: Map[Vertex, Set[Vertex]] = {

@@ -1,6 +1,6 @@
 package br.com.nubank.domain.model.socialNetwork
 
-case class Vertex(id: Int, closenessCentrality: Double = 0) {
+case class Vertex(id: Int, closenessCentrality: Double = 0, fraudulent: Boolean = false) {
 
   override def hashCode(): Int = {
     id.hashCode()
