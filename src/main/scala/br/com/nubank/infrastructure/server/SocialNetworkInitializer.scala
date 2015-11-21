@@ -13,9 +13,11 @@ class SocialNetworkInitializer @Inject()(
                                           socialNetworkCalculator: SocialNetworkService) extends Handler {
 
   override def handle() = {
-    val (graph, vertexes) = graphLoader.loadFrom("src/main/resources/edges")
-    val socialNetwork = socialNetworkCalculator.calculate(vertexes, graph)
-    socialNetworkDao.save(socialNetwork)
+    graphLoader.loadFrom("src/main/resources/edges").map(result => {
+      val (graph, vertexes) = result
+      val socialNetwork = socialNetworkCalculator.calculate(vertexes, graph)
+      socialNetworkDao.save(socialNetwork)
+    })
   }
 
 }

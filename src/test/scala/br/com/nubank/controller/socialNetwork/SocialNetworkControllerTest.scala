@@ -8,6 +8,7 @@ import br.com.nubank.infrastructure.io.graph.GraphLoader
 import br.com.nubank.infrastructure.persistence.memory.SocialNetworkDao
 import com.google.inject.testing.fieldbinder.Bind
 import com.twitter.finagle.http.Status
+import com.twitter.util.Future
 
 class SocialNetworkControllerTest extends IntegrationSpec {
 
@@ -23,7 +24,7 @@ class SocialNetworkControllerTest extends IntegrationSpec {
     Vertex(2) -> Set(Vertex(3))
   )
   val vertexes = Set(Vertex(0), Vertex(1), Vertex(2), Vertex(3), Vertex(4))
-  graphLoader.loadFrom("src/main/resources/edges") returns ((graph, vertexes))
+  graphLoader.loadFrom("src/main/resources/edges") returns (Future(graph, vertexes))
 
   before {
     server.injector.instance[SocialNetworkDao].save(

@@ -2,6 +2,7 @@ package br.com.nubank.infrastructure.io.graph
 
 import br.com.nubank.domain.model.socialNetwork.Vertex
 import br.com.nubank.infrastructure.UnitSpec
+import com.twitter.util.{Await, Duration}
 
 class GraphLoaderTest extends UnitSpec {
 
@@ -12,7 +13,8 @@ class GraphLoaderTest extends UnitSpec {
      \- 2 - 3 - 4
   */
   it should "load graph and vertexes from file" in {
-    val (graph, vertexes) = graphLoader.loadFrom("src/test/resources/edges")
+    val result: (Map[Vertex, Set[Vertex]], Set[Vertex]) = Await.result(graphLoader.loadFrom("src/test/resources/edges"))
+    val (graph, vertexes) = result
 
     graph(Vertex(0)).shouldEqual(Set(Vertex(1), Vertex(2)))
     graph(Vertex(1)).shouldEqual(Set(Vertex(4)))
