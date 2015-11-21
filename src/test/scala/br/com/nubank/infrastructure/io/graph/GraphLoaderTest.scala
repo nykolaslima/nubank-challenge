@@ -14,10 +14,10 @@ class GraphLoaderTest extends UnitSpec {
   it should "load graph and vertexes from file" in {
     val (graph, vertexes) = graphLoader.loadFrom("src/test/resources/edges")
 
-    graph(Vertex(0)).shouldEqual(List(Vertex(1), Vertex(2)))
-    graph(Vertex(1)).shouldEqual(List(Vertex(4)))
-    graph(Vertex(2)).shouldEqual(List(Vertex(3)))
-    graph(Vertex(3)).shouldEqual(List(Vertex(4)))
+    graph(Vertex(0)).shouldEqual(Set(Vertex(1), Vertex(2)))
+    graph(Vertex(1)).shouldEqual(Set(Vertex(4)))
+    graph(Vertex(2)).shouldEqual(Set(Vertex(3)))
+    graph(Vertex(3)).shouldEqual(Set(Vertex(4)))
 
     vertexes should contain (Vertex(0))
     vertexes should contain (Vertex(1))

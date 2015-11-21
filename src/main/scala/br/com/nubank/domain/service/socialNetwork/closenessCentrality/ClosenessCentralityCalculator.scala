@@ -7,7 +7,7 @@ import br.com.nubank.domain.model.socialNetwork.Vertex
 @Singleton
 class ClosenessCentralityCalculator {
 
-  def calculate(distanceMatrix: Array[Array[Int]], vertexes: List[Vertex]): List[Vertex] = {
+  def calculate(distanceMatrix: Array[Array[Int]], vertexes: Set[Vertex]): Set[Vertex] = {
     vertexes.map(vertex => {
       val closeness = BigDecimal(1.0) / calculateFarness(distanceMatrix, vertexes.size, vertex)
       Vertex(vertex.id, closeness.setScale(15, BigDecimal.RoundingMode.DOWN).toDouble)

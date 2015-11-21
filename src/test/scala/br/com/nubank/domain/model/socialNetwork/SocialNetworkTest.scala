@@ -12,10 +12,10 @@ class SocialNetworkTest extends UnitSpec {
     rankedVertexes(2).shouldEqual(Vertex(0, 0.332))
   }
 
-  private def buildGraph: Map[Vertex, List[Vertex]] = {
+  private def buildGraph: Map[Vertex, Set[Vertex]] = {
     Map(
-      Vertex(0) -> List(Vertex(1)),
-      Vertex(1) -> List(Vertex(2))
+      Vertex(0) -> Set(Vertex(1)),
+      Vertex(1) -> Set(Vertex(2))
     )
   }
 
@@ -31,8 +31,8 @@ class SocialNetworkTest extends UnitSpec {
     distanceMatrix
   }
 
-  private def buildVertexesWithCloseness: List[Vertex] = {
-    List(Vertex(0, 0.332), Vertex(1, 0.5), Vertex(2, 0.333))
+  private def buildVertexesWithCloseness: Set[Vertex] = {
+    Set(Vertex(0, 0.332), Vertex(1, 0.5), Vertex(2, 0.333))
   }
 
 }

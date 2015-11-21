@@ -9,7 +9,7 @@ class VertexDistanceCalculator {
 
   val Inf = 999
 
-  def calculate(vertexQuantity: Int, graph: Map[Vertex, List[Vertex]]): Array[Array[Int]] = {
+  def calculate(vertexQuantity: Int, graph: Map[Vertex, Set[Vertex]]): Array[Array[Int]] = {
     val distanceMatrix = initDistanceMatrix(vertexQuantity, graph)
 
     for {
@@ -25,7 +25,7 @@ class VertexDistanceCalculator {
     distanceMatrix
   }
 
-  private def initDistanceMatrix(vertexQuantity: Int, graph: Map[Vertex, List[Vertex]]): Array[Array[Int]] = {
+  private def initDistanceMatrix(vertexQuantity: Int, graph: Map[Vertex, Set[Vertex]]): Array[Array[Int]] = {
     val distanceMatrix = Array.fill[Int](vertexQuantity, vertexQuantity)(Inf)
 
     for(i <- 0 until vertexQuantity) distanceMatrix(i)(i) = 0

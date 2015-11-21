@@ -15,4 +15,8 @@ class TwitterServer extends HttpServer {
       .add[SocialNetworkController]
   }
 
+  override def warmup() = {
+    run[SocialNetworkInitializer]()
+  }
+
 }

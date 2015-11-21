@@ -11,7 +11,7 @@ class VertexDistanceCalculatorTest extends UnitSpec {
     val vertexQuantity = 2;
     val v0 = Vertex(0)
     val v1 = Vertex(1)
-    val graph = Map(v0 -> List(v1))
+    val graph = Map(v0 -> Set(v1))
 
     val distanceMatrix = shortestPathCalculator.calculate(vertexQuantity, graph)
 
@@ -20,7 +20,7 @@ class VertexDistanceCalculatorTest extends UnitSpec {
 
   it should "calculate the shortest distance between a vertex and it's connections that are connected directly" in {
     val vertexQuantity = 3;
-    val graph = Map(Vertex(0) -> List(Vertex(1), Vertex(2)))
+    val graph = Map(Vertex(0) -> Set(Vertex(1), Vertex(2)))
 
     val distanceMatrix = shortestPathCalculator.calculate(vertexQuantity, graph)
 
@@ -34,7 +34,7 @@ class VertexDistanceCalculatorTest extends UnitSpec {
   */
   it should "calculate shortest path with indirect connected vertex" in {
     val vertexQuantity = 4
-    val graph = Map(Vertex(0) -> List(Vertex(1), Vertex(2)), Vertex(2) -> List(Vertex(3)))
+    val graph = Map(Vertex(0) -> Set(Vertex(1), Vertex(2)), Vertex(2) -> Set(Vertex(3)))
 
     val distanceMatrix = shortestPathCalculator.calculate(vertexQuantity, graph)
 
@@ -52,10 +52,10 @@ class VertexDistanceCalculatorTest extends UnitSpec {
   it should "calculate shortest path with two possible paths" in {
     val vertexQuantity = 5
     val graph = Map(
-      Vertex(0) -> List(Vertex(1), Vertex(2)),
-      Vertex(1) -> List(Vertex(4)),
-      Vertex(2) -> List(Vertex(3)),
-      Vertex(3) -> List(Vertex(4))
+      Vertex(0) -> Set(Vertex(1), Vertex(2)),
+      Vertex(1) -> Set(Vertex(4)),
+      Vertex(2) -> Set(Vertex(3)),
+      Vertex(3) -> Set(Vertex(4))
     )
 
     val distanceMatrix = shortestPathCalculator.calculate(vertexQuantity, graph)
@@ -78,9 +78,9 @@ class VertexDistanceCalculatorTest extends UnitSpec {
   it should "calculate shortest path with cyclic connection" in {
     val vertexQuantity = 3
     val graph = Map(
-      Vertex(0) -> List(Vertex(1)),
-      Vertex(1) -> List(Vertex(2)),
-      Vertex(2) -> List(Vertex(0))
+      Vertex(0) -> Set(Vertex(1)),
+      Vertex(1) -> Set(Vertex(2)),
+      Vertex(2) -> Set(Vertex(0))
     )
 
     val distanceMatrix = shortestPathCalculator.calculate(vertexQuantity, graph)

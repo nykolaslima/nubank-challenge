@@ -9,9 +9,9 @@ class ClosenessCentralityCalculatorTest extends UnitSpec {
 
   it should "calculate closeness centrality" in {
     val distanceMatrix = buildDistanceMatrix
-    val vertexes = List(Vertex(0), Vertex(1), Vertex(2), Vertex(3), Vertex(4))
+    val vertexes = Set(Vertex(0), Vertex(1), Vertex(2), Vertex(3), Vertex(4))
 
-    val calculatedVertexes: List[Vertex] = closenessCentralityCalculator.calculate(distanceMatrix, vertexes)
+    val calculatedVertexes: Set[Vertex] = closenessCentralityCalculator.calculate(distanceMatrix, vertexes)
 
     calculatedVertexes.find(v => v.id == 0).get.closenessCentrality.shouldEqual(0.125)
     calculatedVertexes.find(v => v.id == 1).get.closenessCentrality.shouldEqual(0.2)
