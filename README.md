@@ -16,6 +16,8 @@ There are 3 defined endpoints:
  `POST    /social-network/edges` - add a new edge into social network  
  `POST    /social-network/vertexes/:id/actions/fraudulent` - mark a vertex as fraudulent
 
-### Running tests
+### Tests
 
-`sbt test`
+The code is covered by unit tests and REST endpoints are covered by integration tests (named as Feature Tests in Finatra).
+
+Running tests from SBT: `sbt test`
